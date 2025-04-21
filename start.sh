@@ -1,4 +1,5 @@
 #!/bin/bash
 
 cd CTFd
-docker-compose up
+
+docker compose up
