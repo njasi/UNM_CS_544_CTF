@@ -1,0 +1,7 @@
+{
+  "title": "Base64Ception",
+  "score": 10,
+  "message": "The following message was sent to us by one of our undercover agents, and we believe it contains important login information. Please help us decode it!",
+  "flag": "cs544{obfuscation_is_very_good_encryption_source_trust_me}",
+  "download":"obfuscated.txt"
+}
