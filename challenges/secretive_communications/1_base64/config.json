@@ -1,0 +1,6 @@
+{
+  "title": "99 problems but a missing = ain't one.",
+  "score": 10,
+  "message": "We've intercepted the followiing message but need your help decoding it...\n\nY3M1NDR7dGhlX2RlY29kZWRfbWVzc2FnZX0=",
+  "flag": "cs544{the_decrypted_message}"
+}

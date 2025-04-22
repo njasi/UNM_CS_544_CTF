@@ -1,1 +1,0 @@
-Hello this is a basic challenge to get you started, the flag for this challenge is "hello world".

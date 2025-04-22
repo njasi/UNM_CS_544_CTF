@@ -1,0 +1,6 @@
+{
+  "title": "Hello World",
+  "score": 5,
+  "message": "Hello this is a basic challenge to get you started, the flag for this challenge is \"cs544{hello_world}\"",
+  "flag": "cs544{hello_world}"
+}

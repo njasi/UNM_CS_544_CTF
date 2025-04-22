@@ -1,0 +1,7 @@
+{
+  "title": "Flag Hunt",
+  "score": 5,
+  "message": "We've hidden the flag somewhere in this zip file, download it and find the flag!",
+  "flag": "cs544{found_me}",
+  "download":"./download.zip"
+}
