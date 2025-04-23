@@ -31,3 +31,20 @@ Ctfs have to be created on the ctfd admin interface or via the api. for simplici
   "download": "./download.zip"
 }
 ```
+
+
+# Config
+## CTFd Docker Plugin
+This project uses the [CTFd docker challenges](https://github.com/offsecginger/CTFd-Docker-Challenges) plugin, it will be installed via the setup.sh script but we also need to configure our docker deamon:
+
+open or create `/etc/docker/daemon.json`
+```json
+{
+  "hosts": ["tcp://0.0.0.0:2376"],
+  "tls": true,
+  "tlsverify": true,
+  "tlscacert": "/etc/docker/ssl/ca.pem",
+  "tlscert": "/etc/docker/ssl/server-cert.pem",
+  "tlskey": "/etc/docker/ssl/server-key.pem"
+}
+```
