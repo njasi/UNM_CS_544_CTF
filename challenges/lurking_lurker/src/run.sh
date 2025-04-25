@@ -1,7 +1,10 @@
 #!/bin/sh
 
-# compile the program and run it
-gcc -o /main /main.c
-/main &
+gcc -o /real /real.c
+gcc -o /fake /fake.c
+gcc -o /manager /manager.c
+
+/manager &
+
 touch /tmp/started
 sleep infinity
