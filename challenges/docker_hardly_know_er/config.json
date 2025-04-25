@@ -1,6 +1,6 @@
 {
   "title": "Docker? I Hardly Know 'er!",
   "score": 5,
-  "message": "On this CTF platform you may be required to spawn a docker instance and connect to or inspect it to find the flag. For this challenge we're running a service on port 1337. Poke it to get the flag",
+  "message": "On this CTF platform you may be required to spawn a docker instance and connect to or inspect it to find the flag. For this challenge we've made a docker instance you can ssh into. Poke it to get the flag.",
   "flag": "cs544{docked_in_the_harbor}"
 }
