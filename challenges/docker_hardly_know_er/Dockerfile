@@ -17,7 +17,8 @@ RUN echo "cs544{docked_in_the_harbor}" > /home/dockeruser/flag.txt && \
 
 # motd instead?
 RUN echo 'echo "\033[1;33mDocker? I hardly know '\''er!\033[0m"' >> /etc/profile
-RUN echo 'echo "You\'ve successfully connected to a docker container!"' >> /etc/profile
+RUN echo 'echo "You'\''ve successfully connected to a docker container!"' >> /etc/profile
+
 
 # Expose SSH
 EXPOSE 22
