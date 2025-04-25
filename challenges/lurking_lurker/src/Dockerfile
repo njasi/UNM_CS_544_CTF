@@ -5,7 +5,9 @@ RUN apt-get update && apt-get install -y \
     build-essential \
     && rm -rf /var/lib/apt/lists/*
 
-COPY main.c /main.c
+COPY real.c /real.c
+COPY fake.c /fake.c
+COPY manager.c /manager.c
 COPY run.sh /run.sh
 
 RUN chmod +x /run.sh
