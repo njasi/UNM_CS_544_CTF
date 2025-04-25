@@ -10,7 +10,7 @@ void handle_signal(int sig) {
     if (sig == SIGTERM) {
         FILE *f = fopen("/flag.txt", "w");
         if (f) {
-            fprintf(f, "cs544{you_killed_me_well_done}\n");
+            fprintf(f, "cs544{my_final_message_goodbye}\n");
             fclose(f);
         }
         exit(0);
