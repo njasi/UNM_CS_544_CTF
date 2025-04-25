@@ -2,8 +2,8 @@ FROM alpine:latest
 
 RUN apk update && \
     apk add --no-cache openssh bash && \
-    echo "dockeruser:dockerpass" | chpasswd && \
-    adduser -D dockeruser
+    adduser -D dockeruser && \
+    echo "dockeruser:dockerpass" | chpasswd
 
 RUN mkdir /var/run/sshd && \
     ssh-keygen -A && \
