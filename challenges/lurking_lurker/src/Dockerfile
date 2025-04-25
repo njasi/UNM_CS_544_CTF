@@ -9,7 +9,7 @@ RUN apt-get update && apt-get install -y \
 
 # Create SSH directory and a user
 RUN mkdir /var/run/sshd && \
-    useradd -m ctf && echo 'inspector:gadget' | chpasswd && \
+    useradd -m inspector && echo 'inspector:gadget' | chpasswd && \
     echo 'PermitRootLogin no' >> /etc/ssh/sshd_config && \
     echo 'PasswordAuthentication yes' >> /etc/ssh/sshd_config && \
     echo 'AllowUsers inspector' >> /etc/ssh/sshd_config
