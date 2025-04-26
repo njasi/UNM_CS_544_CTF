@@ -22,6 +22,5 @@ do
 done
 
 touch /tmp/started
-rm -- "$0"
 
 sleep infinity
