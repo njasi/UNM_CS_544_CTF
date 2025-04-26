@@ -8,7 +8,7 @@
 
 void handle_signal(int sig) {
     if (sig == SIGTERM) {
-        FILE *f = fopen("/flag.txt", "w");
+        FILE *f = fopen("/home/inspector/flag.txt", "w");
         if (f) {
             fprintf(f, "cs544{my_final_message_goodbye}\n");
             fclose(f);

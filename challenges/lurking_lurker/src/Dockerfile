@@ -27,6 +27,9 @@ RUN gcc -o /real /real.c && \
 # make it so we dont need to password for sudo
 RUN echo "inspector ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
+# fix /etc/hosts so we dont have sudo complaining
+RUN echo "127.0.0.1 $(hostname)" >> /etc/hosts
+
 RUN chmod +x /run.sh
 
 EXPOSE 22
