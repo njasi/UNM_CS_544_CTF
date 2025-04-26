@@ -13,7 +13,7 @@ void start_fakes() {
     for (int i = 0; i < NUM_FAKE; i++) {
         pid_t pid = fork();
         if (pid == 0) {
-            execl("/target", "/target", NULL);
+            execl("/normal", "/normal", NULL);
             exit(1); // if exec fails
         }
         fake_pids[i] = pid;
@@ -23,7 +23,7 @@ void start_fakes() {
 void start_real() {
     pid_t pid = fork();
     if (pid == 0) {
-        execl("/normal", "/normal", NULL);
+        execl("/target", "/target", NULL);
         exit(1);
     }
     real_pid = pid;
