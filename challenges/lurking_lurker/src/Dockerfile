@@ -28,7 +28,8 @@ RUN gcc -o /real /real.c && \
 RUN echo "inspector ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
 # fix /etc/hosts so we dont have sudo complaining
-RUN echo "127.0.0.1 $(hostname)" >> /etc/hosts
+# idk how to fully fix this tbh
+# RUN echo "127.0.0.1 $(hostname)" >> /etc/hosts
 
 RUN chmod +x /run.sh
 
