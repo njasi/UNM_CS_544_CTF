@@ -17,6 +17,7 @@ RUN mkdir /var/run/sshd && \
 COPY normal.c /normal.c
 COPY target.c /target.c
 COPY shared.c /shared.c
+COPY shared.h /shared.h
 COPY manager.c /manager.c
 COPY run.sh /run.sh
 
