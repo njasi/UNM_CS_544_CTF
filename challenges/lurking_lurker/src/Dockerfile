@@ -35,4 +35,4 @@ RUN chmod +x /run.sh
 
 EXPOSE 22
 
-CMD service ssh start && /run.sh
+CMD ["sh", "-c", "service ssh start && /run.sh"]
