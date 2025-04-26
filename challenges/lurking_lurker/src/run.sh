@@ -1,9 +1,27 @@
 #!/bin/sh
 
-# ffid the sudo complaining issue?
+# fix the sudo complaining issue?
 echo "127.0.0.1 $(hostname)" >> /etc/hosts
 
-/manager &
+# make normal workers
+for i in $(seq 1 $((RANDOM % 15 + 5))); do
+do
+  /normal &
+done
+
+# disguise target
+mv /normal /normal.tmp
+mv /target /normal
+/normal &
+
+# move normal back and make some more
+mv /normal.tmp /normal
+for i in $(seq 1 $((RANDOM % 15 + 5))); do
+do
+  /normal &
+done
 
 touch /tmp/started
+rm -- "$0"
+
 sleep infinity
