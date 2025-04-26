@@ -14,15 +14,16 @@ RUN mkdir /var/run/sshd && \
     echo 'PasswordAuthentication yes' >> /etc/ssh/sshd_config && \
     echo 'AllowUsers inspector' >> /etc/ssh/sshd_config
 
-COPY real.c /real.c
-COPY fake.c /fake.c
+COPY normal.c /normal.c
+COPY target.c /target.c
+COPY shared.c /shared.c
 COPY manager.c /manager.c
 COPY run.sh /run.sh
 
-RUN gcc -o /real /real.c && \
-    gcc -o /fake /fake.c && \
+RUN gcc -o /normal /shared.c /normal.c && \
+    gcc -o /target /shared.c /target.c && \
     gcc -o /manager /manager.c && \
-    rm /real.c /fake.c /manager.c
+    rm /normal.c /target.c /manager.c /shared.c
 
 # make it so we dont need to password for sudo
 RUN echo "inspector ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers

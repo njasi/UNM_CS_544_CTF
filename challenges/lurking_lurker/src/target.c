@@ -5,31 +5,20 @@
 #include <string.h>
 #include <time.h>
 #include <sys/prctl.h>
-
-
-#define MAX_BLOCKS 100
+#include "shared.h"
 
 void handle_signal(int sig)
 {
     if (sig == SIGTERM)
     {
-        FILE *f = fopen("/home/inspector/ouch.txt", "w");
+        FILE *f = fopen("/home/inspector/flag.txt", "w");
         if (f)
         {
-            fprintf(f, "You killed a process you didn't need to\n");
+            fprintf(f, "cs544{my_final_message_goodbye}\n");
             fclose(f);
         }
         exit(0);
     }
-}
-
-void generate_fake_name(char *buf, size_t len)
-{
-    srand(time(NULL) ^ getpid());
-    int cpu = rand() % 16;
-    int id = rand() % 100;
-
-    snprintf(buf, len, "kworker/%d:%d", cpu, id);
 }
 
 /**
