@@ -1,4 +1,3 @@
-#define _GNU_SOURCE
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -7,6 +6,7 @@
 #include <sys/prctl.h>
 
 void generate_fake_name(char *buf, size_t len) {
+    srand(time(NULL) ^ getpid());
     int cpu = rand() % 16;
     int id = rand() % 100;
 
@@ -23,7 +23,7 @@ void do_work(){
             total += rand() % 100;
         }
 
-        sleep(1);
+        usleep(100000);
     }
 }
 
@@ -37,9 +37,7 @@ int main(int argc, char *argv[])
     memset(argv[0], 0, strlen(argv[0]));
     strncpy(argv[0], fake_name, strlen(fake_name));
 
-    while (1) {
-        sleep(60);
-    }
+    do_work();
 
     return 0;
 }
