@@ -9,6 +9,8 @@
 #include <sys/resource.h>
 #include <sys/types.h>
 
+#define TARGET_SHR_KB 1280 // target SHR in KiB
+#define LIBRARY_PATH "/lib/x86_64-linux-gnu/libm.so.6" // math lib ig
 
 void *loaded_libs[1024];
 int loaded_count = 0;
@@ -44,7 +46,7 @@ void inflate_shared_memory()
         loaded_libs[loaded_count++] = handle;
         shr_kb = get_process_shared_memory_kb();
         printf("[+] Loaded %d libraries, SHR now: %zu KB\n", loaded_count, shr_kb);
-        usleep(10000); 
+        usleep(10000);
     }
 
     printf("[*] Final SHR: %zu KB\n", shr_kb);
