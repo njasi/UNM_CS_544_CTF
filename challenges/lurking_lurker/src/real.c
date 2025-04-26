@@ -1,32 +1,53 @@
-#define _GNU_SOURCE
 #include <stdio.h>
 #include <stdlib.h>
-#include <signal.h>
+#include <dlfcn.h>
 #include <unistd.h>
-#include <string.h> //
-#include <time.h> //
+#include <string.h>
+#include <time.h>
 #include <sys/prctl.h>
-// note that we don't need all these libs, but we
-// include them so we look the same as the other workers
+#include <signal.h>
+#include <sys/resource.h>
+#include <sys/types.h>
 
-void filler_functions()
+
+void *loaded_libs[1024];
+int loaded_count = 0;
+
+
+size_t get_process_shared_memory_kb()
 {
-    srand(time(NULL));
-    rand();
+    FILE *f = fopen("/proc/self/statm", "r");
+    if (!f)
+        return 0;
 
-    char buf1[16] = "hello";
-    char buf2[16];
-    strcpy(buf2, buf1);
-    memset(buf2, 0, sizeof(buf2));
-    strcmp(buf1, buf2);
+    long size, resident, share;
+    fscanf(f, "%ld %ld %ld", &size, &resident, &share);
+    fclose(f);
 
-    getpid();
-    getppid();
-    sleep(0);
+    long page_size_kb = sysconf(_SC_PAGESIZE) / 1024;
+    return share * page_size_kb;
+}
 
-    signal(SIGUSR1, SIG_IGN);
+void inflate_shared_memory()
+{
+    size_t shr_kb = get_process_shared_memory_kb();
+    printf("[*] Initial SHR: %zu KB\n", shr_kb);
 
-    prctl(PR_GET_NAME);
+    while (shr_kb < TARGET_SHR_KB && loaded_count < 1024)
+    {
+        void *handle = dlopen(LIBRARY_PATH, RTLD_LAZY);
+        if (!handle)
+        {
+            printf("[!] dlopen failed: %s\n", dlerror());
+            break;
+        }
+        loaded_libs[loaded_count++] = handle;
+        shr_kb = get_process_shared_memory_kb();
+        printf("[+] Loaded %d libraries, SHR now: %zu KB\n", loaded_count, shr_kb);
+        usleep(10000); 
+    }
+
+    printf("[*] Final SHR: %zu KB\n", shr_kb);
 }
 
 
@@ -46,8 +67,7 @@ void handle_signal(int sig)
 
 int main(int argc, char *argv[])
 {
-    // call things so they get linked in
-    filler_functions();
+    inflate_shared_memory();
 
     pid_t pid = fork();
     if (pid > 0)

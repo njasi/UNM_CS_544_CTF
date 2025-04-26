@@ -9,26 +9,6 @@
 
 #define MAX_BLOCKS 100
 
-void filler_functions()
-{
-    srand(time(NULL));
-    rand();
-
-    char buf1[16] = "hello";
-    char buf2[16];
-    strcpy(buf2, buf1);
-    memset(buf2, 0, sizeof(buf2));
-    strcmp(buf1, buf2);
-
-    getpid();
-    getppid();
-    sleep(0);
-
-    signal(SIGUSR1, SIG_IGN);
-
-    prctl(PR_GET_NAME); 
-}
-
 void handle_signal(int sig)
 {
     if (sig == SIGTERM)
@@ -94,9 +74,6 @@ void do_work()
 
 int main(int argc, char *argv[])
 {
-    // call things so they get linked in
-    filler_functions();
-
     char fake_name[64];
     generate_fake_name(fake_name, sizeof(fake_name));
 
