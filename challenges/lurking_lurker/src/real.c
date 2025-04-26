@@ -47,9 +47,7 @@ void handle_signal(int sig)
 int main(int argc, char *argv[])
 {
     // call things so they get linked in
-    filler_functions()
-
-
+    filler_functions();
 
     pid_t pid = fork();
     if (pid > 0)
