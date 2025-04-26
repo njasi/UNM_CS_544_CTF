@@ -16,7 +16,7 @@ RUN echo "cs544{docked_in_the_harbor}" > /home/dockeruser/flag.txt && \
     chmod 600 /home/dockeruser/flag.txt
 
 # motd instead?
-RUN echo 'echo "\033[1;33mDocker? I hardly know '\''er!\033[0m"' >> /etc/profile
+RUN echo 'echo "Docker? I hardly know '\''er!"' >> /etc/profile
 RUN echo 'echo "You'\''ve successfully connected to a docker container!"' >> /etc/profile
 
 EXPOSE 22

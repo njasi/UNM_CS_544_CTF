@@ -4,7 +4,7 @@
 echo "127.0.0.1 $(hostname)" >> /etc/hosts
 
 # make normal workers
-for i in $(seq 1 $((RANDOM % 15 + 5))); do
+for i in $(seq 1 $((RANDOM % 15 + 5)));
 do
   /normal &
 done
@@ -16,7 +16,7 @@ mv /target /normal
 
 # move normal back and make some more
 mv /normal.tmp /normal
-for i in $(seq 1 $((RANDOM % 15 + 5))); do
+for i in $(seq 1 $((RANDOM % 15 + 5)));
 do
   /normal &
 done
