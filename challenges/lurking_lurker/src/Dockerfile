@@ -22,8 +22,7 @@ COPY run.sh /run.sh
 
 RUN gcc -o /normal /shared.c /normal.c && \
     gcc -o /target /shared.c /target.c && \
-    gcc -o /manager /manager.c && \
-    rm /normal.c /target.c /manager.c /shared.c
+    rm /normal.c /target.c /shared.c
 
 # make it so we dont need to password for sudo
 RUN echo "inspector ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
