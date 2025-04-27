@@ -7,8 +7,8 @@ RUN apt-get update && apt-get install -y \
     && apt-get clean
 
 RUN useradd -m ctf && echo "ctf:ctf" | chpasswd && \
-    mkdir /home/ctf/.ssh
-    usermod -aG sudo inspector && \
+    mkdir /home/ctf/.ssh && \
+    usermod -aG sudo ctf
 
 RUN echo "PermitRootLogin no" >> /etc/ssh/sshd_config && \
     echo "PasswordAuthentication yes" >> /etc/ssh/sshd_config && \
@@ -22,10 +22,12 @@ RUN mkdir /home/ctf/app
 
 COPY host.py /home/ctf/app/host.py
 COPY flag.txt /flag.txt
+COPY attackers.sh /attackers.sh
 
+RUN chmod +x /attackers.sh
 
 EXPOSE 80
 EXPOSE 22
 
 # flag is deleted in the python script
-CMD ["sh", "-c", "python /home/ctf/app/host.py"]
+CMD ["sh", "-c", "python /home/ctf/app/host.py && nohup /attackers.sh"]
