@@ -21,6 +21,8 @@ do
   /normal &
 done
 
+rm /normal
+
 touch /tmp/started
 
 sleep infinity
