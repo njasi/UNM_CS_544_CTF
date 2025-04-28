@@ -28,16 +28,21 @@ log_handler.setLevel(logging.INFO)
 formatter = logging.Formatter("%(asctime)s - %(levelname)s - %(message)s")
 log_handler.setFormatter(formatter)
 
-app.logger.addHandler(log_handler)
+logger = logging.getLogger(__name__)
+logger.addHandler(log_handler)
+
 
 @app.before_request
 def log_request():
-    app.logger.info(f"Request received: {request.method} {request.path} from {request.remote_addr}")
+    logger.info(
+        f"Request received: {request.method} {request.path} from {request.remote_addr}"
+    )
 
 
 ####################
 # SETUP APP ROUTES #
 ####################
+
 
 @app.route("/")
 def home():
