@@ -7,7 +7,7 @@ from flask import Flask, request, abort
 from logging.handlers import RotatingFileHandler
 
 
-with open("/flag.txt","r") as file:
+with open("/flag.txt", "r") as file:
     FLAG = file.readline()
 # remove the flag right after starting up <3
 os.remove("/flag.txt")
@@ -21,19 +21,24 @@ lock = threading.Lock()
 #################
 
 log_handler = RotatingFileHandler(
-    '/home/ctf/app/access.log',
-    maxBytes=10 * 1024 * 1024,
-    backupCount=1
+    "/home/ctf/app/access.log", maxBytes=10 * 1024 * 1024, backupCount=1
 )
 
 log_handler.setLevel(logging.INFO)
-formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
+formatter = logging.Formatter("%(asctime)s - %(levelname)s - %(message)s")
 log_handler.setFormatter(formatter)
+
 app.logger.addHandler(log_handler)
+
+@app.before_request
+def log_request():
+    app.logger.info(f"Request received: {request.method} {request.path} from {request.remote_addr}")
+
 
 ####################
 # SETUP APP ROUTES #
 ####################
+
 
 @app.route("/")
 def home():
@@ -41,6 +46,7 @@ def home():
     index route to test if the server is running
     """
     return "Victim is up and server running."
+
 
 @app.route("/flag")
 def flag():
@@ -61,7 +67,8 @@ def flag():
 
         if len(recent) > 20:
             abort(503)
-    return "CTF{ddos_defended_successfully}"
+    return FLAG + "\n"
+
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=80)

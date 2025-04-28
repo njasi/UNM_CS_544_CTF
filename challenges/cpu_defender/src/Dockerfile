@@ -27,7 +27,6 @@ COPY attackers.sh /attackers.sh
 
 RUN chmod +x /attackers.sh
 
-EXPOSE 80
 EXPOSE 22
 
 # flag is deleted in the python script
