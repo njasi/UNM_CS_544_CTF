@@ -24,7 +24,7 @@ log_handler = RotatingFileHandler(
     "/home/ctf/app/access.log", maxBytes=10 * 1024 * 1024, backupCount=1
 )
 
-log_handler.setLevel(logging.INFO)
+log_handler.setLevel(logging.DEBUG)
 formatter = logging.Formatter("%(asctime)s - %(levelname)s - %(message)s")
 log_handler.setFormatter(formatter)
 
@@ -34,6 +34,10 @@ logger.addHandler(log_handler)
 
 @app.before_request
 def log_request():
+    with open("/home/ctf/app/test.log", "w+") as file:
+        file.write("Test\n")
+
+    logger.info("Before request hook triggered")
     logger.info(
         f"Request received: {request.method} {request.path} from {request.remote_addr}"
     )
