@@ -7,10 +7,10 @@ from flask import Flask, request, abort
 from logging.handlers import RotatingFileHandler
 
 
-with open("./flag.txt", "r") as file:
+with open("/flag.txt", "r") as file:
     FLAG = file.readline()
 # remove the flag right after starting up <3
-# os.remove("./flag.txt")
+os.remove("/flag.txt")
 
 app = Flask(__name__)
 recent_requests = deque([time.time()] * 30, maxlen=50)
@@ -21,7 +21,7 @@ lock = threading.Lock()
 #################
 
 log_handler = RotatingFileHandler(
-    './access.log', maxBytes=10 * 1024 * 1024, backupCount=1
+    '/home/ctf/app/access.log', maxBytes=10 * 1024 * 1024, backupCount=1
 )
 log_handler.setLevel(logging.DEBUG)
 
