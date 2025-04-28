@@ -4,8 +4,25 @@ RUN apt-get update && apt-get install -y \
     hping3 \
     openssh-server \
     curl \
+    build-essential \
+    libcurl4-openssl-dev \
+    libssl-dev \
+    make \
+    wget \
+    tar \
+    && rm -rf /var/lib/apt/lists/*
     && pip install Flask \
     && apt-get clean
+
+# get curl-loader
+RUN wget https://github.com/aschepis/curl-loader/releases/download/v0.1/curl-loader-0.1.tar.gz -O /tmp/curl-loader.tar.gz && \
+    tar -zxvf /tmp/curl-loader.tar.gz -C /tmp && \
+    cd /tmp/curl-loader-0.1 && \
+    make optimize=1 debug=0 && \
+    make install
+
+# clean up
+RUN rm -rf /tmp/curl-loader-0.1 /tmp/curl-loader.tar.gz
 
 RUN useradd -m ctf && echo "ctf:ctf" | chpasswd && \
     mkdir /home/ctf/.ssh && \
