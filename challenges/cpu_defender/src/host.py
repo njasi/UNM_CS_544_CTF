@@ -49,6 +49,9 @@ def home():
     """
     index route to test if the server is running
     """
+    logger.info(
+        f"Request received: {request.method} {request.path} from {request.remote_addr}"
+    )
     return "Victim is up and server running."
 
 
@@ -62,6 +65,9 @@ def flag():
     - else:
         send flag
     """
+    logger.info(
+        f"Request received: {request.method} {request.path} from {request.remote_addr}"
+    )
 
     now = time.time()
     with lock:
