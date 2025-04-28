@@ -10,14 +10,14 @@ RUN apt-get update && apt-get install -y \
     make \
     wget \
     tar \
-    && rm -rf /var/lib/apt/lists/* \ 
+    git \
+    && rm -rf /var/lib/apt/lists/* \
     && pip install Flask \
     && apt-get clean
 
 # get curl-loader
-RUN wget https://github.com/aschepis/curl-loader/releases/download/v0.1/curl-loader-0.1.tar.gz -O /tmp/curl-loader.tar.gz && \
-    tar -zxvf /tmp/curl-loader.tar.gz -C /tmp && \
-    cd /tmp/curl-loader-0.1 && \
+RUN git clone https://github.com/aschepis/curl-loader.git /tmp/curl-loader && \
+    cd /tmp/curl-loader && \
     make optimize=1 debug=0 && \
     make install
 
