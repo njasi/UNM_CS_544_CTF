@@ -3,6 +3,7 @@ FROM python:3.9-slim
 RUN apt-get update && apt-get install -y \
     hping3 \
     openssh-server \
+    curl \
     && pip install Flask \
     && apt-get clean
 
@@ -30,4 +31,4 @@ EXPOSE 80
 EXPOSE 22
 
 # flag is deleted in the python script
-CMD ["sh", "-c", "python /home/ctf/app/host.py && nohup /attackers.sh"]
+CMD ["sh", "-c", "service ssh start && python /home/ctf/app/host.py && nohup /attackers.sh"]
