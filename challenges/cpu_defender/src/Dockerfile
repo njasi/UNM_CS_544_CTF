@@ -10,7 +10,7 @@ RUN apt-get update && apt-get install -y \
     make \
     wget \
     tar \
-    && rm -rf /var/lib/apt/lists/*
+    && rm -rf /var/lib/apt/lists/* \ 
     && pip install Flask \
     && apt-get clean
 
