@@ -20,8 +20,9 @@ lock = threading.Lock()
 # SETUP LOGGING #
 #################
 
+# 200 kb limit
 log_handler = RotatingFileHandler(
-    '/home/ctf/app/access.log', maxBytes=10 * 1024 * 1024, backupCount=1
+    '/home/ctf/app/access.log', maxBytes=200 * 1024, backupCount=1
 )
 log_handler.setLevel(logging.DEBUG)
 
