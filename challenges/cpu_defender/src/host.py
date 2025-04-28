@@ -7,10 +7,10 @@ from flask import Flask, request, abort
 from logging.handlers import RotatingFileHandler
 
 
-with open("/flag.txt", "r") as file:
+with open("./flag.txt", "r") as file:
     FLAG = file.readline()
 # remove the flag right after starting up <3
-os.remove("/flag.txt")
+# os.remove("./flag.txt")
 
 app = Flask(__name__)
 recent_requests = deque([time.time()] * 30, maxlen=50)
@@ -21,23 +21,21 @@ lock = threading.Lock()
 #################
 
 log_handler = RotatingFileHandler(
-    "/home/ctf/app/access.log", maxBytes=10 * 1024 * 1024, backupCount=1
+    './access.log', maxBytes=10 * 1024 * 1024, backupCount=1
 )
-
 log_handler.setLevel(logging.DEBUG)
-formatter = logging.Formatter("%(asctime)s - %(levelname)s - %(message)s")
+
+formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
 log_handler.setFormatter(formatter)
 
 logger = logging.getLogger(__name__)
 logger.addHandler(log_handler)
+logger.setLevel(logging.DEBUG)
 
+logger.info("Starting up")
 
 @app.before_request
 def log_request():
-    with open("/home/ctf/app/test.log", "w+") as file:
-        file.write("Test\n")
-
-    logger.info("Before request hook triggered")
     logger.info(
         f"Request received: {request.method} {request.path} from {request.remote_addr}"
     )
@@ -53,9 +51,6 @@ def home():
     """
     index route to test if the server is running
     """
-    logger.info(
-        f"Request received: {request.method} {request.path} from {request.remote_addr}"
-    )
     return "Victim is up and server running."
 
 
@@ -69,9 +64,6 @@ def flag():
     - else:
         send flag
     """
-    logger.info(
-        f"Request received: {request.method} {request.path} from {request.remote_addr}"
-    )
 
     now = time.time()
     with lock:
