@@ -39,7 +39,6 @@ def log_request():
 # SETUP APP ROUTES #
 ####################
 
-
 @app.route("/")
 def home():
     """

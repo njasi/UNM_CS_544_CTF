@@ -6,7 +6,7 @@ TARGET="localhost"
 
 prctl --set-name "systemd"
 
-rm -- "$0"
+# rm -- "$0"
 
 # cycle through ips randomly
 while true; do
