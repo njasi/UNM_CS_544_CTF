@@ -30,4 +30,4 @@ RUN chmod +x /attackers.sh
 EXPOSE 22
 
 # flag is deleted in the python script
-CMD ["sh", "-c", "service ssh start && python /home/ctf/app/host.py && nohup /attackers.sh"]
+CMD ["sh", "-c", "service ssh start && python /home/ctf/app/host.py & nohup /attackers.sh"]
