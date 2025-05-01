@@ -1,0 +1,1 @@
+* * * * * root /opt/rotate-logs.sh > /dev/null 2>&1
