@@ -20,12 +20,12 @@ COPY logcron /etc/cron.d/logcron
 RUN chmod +x /opt/rotate-logs.sh && chmod 644 /etc/cron.d/logcron && \
     touch /var/log/syslog && crontab /etc/cron.d/logcron
 
+COPY flag.txt /root/flag.txt
+RUN chmod 600 /root/flag.txt
+
 USER ctf
 WORKDIR /home/ctf
 RUN mkdir -p bin && echo 'export PATH=/home/ctf/bin:$PATH' >> ~/.bashrc
-
-COPY flag.txt /root/flag.txt
-RUN chmod 600 /root/flag.txt
 
 EXPOSE 22
 CMD service cron start && /usr/sbin/sshd -D
