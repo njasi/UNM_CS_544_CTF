@@ -5,7 +5,6 @@ RUN apt-get update && apt-get install -y \
     sudo \
     cron \
     openssh-server \
-    netcat \
     && rm -rf /var/lib/apt/lists/*
 
 RUN useradd -m ctf && echo 'ctf:ctf' | chpasswd && \
