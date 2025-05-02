@@ -1,7 +1,8 @@
 #!/bin/bash
-echo "logrotate starting\n" >> /home/ctf/log_status.log
+echo "logrotate starting" >> /home/ctf/log_status.log
 
-/usr/bin/logrotate
+# pretend i'm actually using logrotate here, dont want to set it up fully
+/usr/sbin/logrotate --version
 
 NOW=$( date '+%F_%H:%M:%S' )
-echo "logrotate has run successfully @ $NOW\n" >> /home/ctf/log_status.log
+echo "logrotate has run successfully @ $NOW" >> /home/ctf/log_status.log
