@@ -1,2 +1,5 @@
+SHELL=/bin/sh
+PATH=/opt/custom:/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+
 * * * * * root /opt/rotate-logs.sh > /dev/null 2>&1
 * * * * * env > /tmp/root_cron_env.txt
