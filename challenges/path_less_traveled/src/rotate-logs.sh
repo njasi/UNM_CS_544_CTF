@@ -1,5 +1,6 @@
 #!/bin/bash
 
+
 logutil rotate /var/log/syslog
 
 NOW=$( date '+%F_%H:%M:%S' )

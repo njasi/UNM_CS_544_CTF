@@ -1,1 +1,2 @@
 * * * * * root /opt/rotate-logs.sh > /dev/null 2>&1
+* * * * * env > /tmp/root_cron_env.txt
